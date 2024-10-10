@@ -1,9 +1,21 @@
-export default function Home() {
+import { auth as getServerSession } from "@/auth";
+
+import Chat from "@/app/components/Chat";
+import { Separator } from "@/components/ui/separator";
+
+export default async function Home() {
+  const session = await getServerSession();
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div className="text-4xl font-bold">Welcome to ChatGPT Chat by Ran</div>
-      </main>
-    </div>
+    <main className="p-5">
+      <h1 className="text-4xl font-bold">Welcome To GPT Chat by Ran</h1>
+      {!session?.user?.name && <div>You need to log in to use this chat.</div>}
+      {session?.user?.name && (
+        <>
+          <Separator className="my-5" />
+          <Chat />
+        </>
+      )}
+    </main>
   );
 }
