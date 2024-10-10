@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
-import { Inter } from "next/font/google";
 import Link from "next/link";
 
 import { auth, signIn, signOut } from "@/auth";
@@ -8,8 +7,6 @@ import { auth, signIn, signOut } from "@/auth";
 import UserButton from "./components/UserButton";
 
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NextJS ChatGPT App",
