@@ -23,6 +23,7 @@ export default function UserButton({
   onSignOut: () => Promise<void>;
 }) {
   const { data: session, status } = useSession();
+  console.log("session: ", session);
 
   return (
     <div>
