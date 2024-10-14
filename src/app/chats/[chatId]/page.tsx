@@ -18,7 +18,7 @@ export default async function ChatDetail({
   }
 
   const session = await getServerSession();
-  if (chat?.name !== session?.user?.name) {
+  if (!session || chat?.user_email !== session?.user?.email) {
     return redirect("/");
   }
 

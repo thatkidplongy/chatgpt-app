@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
+import { Inter } from "next/font/google";
 import Link from "next/link";
 
 import { auth, signIn, signOut } from "@/auth";
@@ -7,6 +8,8 @@ import { auth, signIn, signOut } from "@/auth";
 import UserButton from "./components/UserButton";
 
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NextJS ChatGPT App",
@@ -17,8 +20,10 @@ export const dynamic = "force-dynamic";
 
 export default async function RootLayout({
   children,
+  chats,
 }: Readonly<{
   children: React.ReactNode;
+  chats: React.ReactNode;
 }>) {
   const session = await auth();
   if (session?.user) {
@@ -34,7 +39,7 @@ export default async function RootLayout({
   return (
     <SessionProvider basePath="/api/auth" session={session}>
       <html lang="en">
-        <body className={`px-2 md:px-5`}>
+        <body className={`${inter.className} px-2 md:px-5`}>
           <header className="text-white font-bold bg-green-900 text-2xl p-2 mb-3 rounded-b-lg shadow-gray-700 shadow-lg flex">
             <div className="flex flex-grow">
               <Link href="/">GPT Chat</Link>
@@ -56,6 +61,7 @@ export default async function RootLayout({
             </div>
           </header>
           <div className="flex flex-col md:flex-row">
+            {chats}
             <div className="flex-grow">{children}</div>
           </div>
         </body>
