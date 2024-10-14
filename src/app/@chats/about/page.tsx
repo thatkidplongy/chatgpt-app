@@ -1,5 +1,3 @@
-function page() {
-  return <div>page</div>;
+export default function BlankPage() {
+  return <div />;
 }
-
-export default page;
