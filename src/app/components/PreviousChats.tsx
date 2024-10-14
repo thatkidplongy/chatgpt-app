@@ -20,7 +20,7 @@ export default async function PreviousChats() {
             {chats.map((chat) => (
               <div
                 key={chat.id}
-                className="m-1 border-2 rounded-xl transition ease-in-out duration-300 transform hover:scale-105"
+                className="m-1 border-2 rounded-xl transition ease-in-out duration-300 transform hover:-translate-y-1"
               >
                 <Link
                   href={`/chats/${chat.id}`}
