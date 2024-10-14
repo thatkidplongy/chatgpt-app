@@ -17,7 +17,10 @@ export async function getCompletion(
 ) {
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
-    messages: messageHistory,
+    messages: messageHistory.map((message) => ({
+      role: message.role,
+      content: message.content,
+    })),
   });
 
   const messages = [
@@ -32,8 +35,8 @@ export async function getCompletion(
   let chatId = id;
   if (!chatId) {
     chatId = await createChat(
-      session?.user?.email || "",
-      messageHistory[0].content,
+      session?.user?.email ?? "",
+      session?.user?.name!,
       messages
     );
   } else {
