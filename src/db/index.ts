@@ -46,10 +46,10 @@ export async function createChat(
 }
 
 export async function getChatsWithMessages(
-  userEmail: string
+  name: string
 ): Promise<ChatWithMessages[]> {
   const { rows: chats } =
-    await sql`SELECT * FROM chats WHERE user_email = ${userEmail} ORDER BY timestamp DESC LIMIT 3`;
+    await sql`SELECT * FROM chats WHERE name = ${name} ORDER BY timestamp DESC LIMIT 3`;
 
   for (const chat of chats) {
     const { rows: messages } =

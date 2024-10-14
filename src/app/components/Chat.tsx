@@ -7,10 +7,9 @@ import { Input } from "@/components/ui/input";
 
 import { getCompletion } from "@/app/server-actions/getCompletion";
 
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
+import Transcript from "./Transcript";
+
+import { Message } from "@/types";
 
 export default function Chat({
   id = null,
@@ -44,22 +43,7 @@ export default function Chat({
 
   return (
     <div className="flex flex-col">
-      {messages.map((message, i) => (
-        <div
-          key={i}
-          className={`mb-5 flex flex-col ${
-            message.role === "user" ? "items-end" : "items-start"
-          }`}
-        >
-          <div
-            className={`${
-              message.role === "user" ? "bg-blue-500" : "bg-gray-500 text-black"
-            } rounded-md py-2 px-8`}
-          >
-            {message.content}
-          </div>
-        </div>
-      ))}
+      <Transcript messages={messages} truncate={false} />
       <div className="flex border-t-2 border-t-gray-500 pt-3 mt-3">
         <Input
           className="flex-grow text-xl"
