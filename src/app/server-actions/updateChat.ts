@@ -13,7 +13,7 @@ export const updateChat = async (
   const session = await getServerSession();
   if (!chatId) {
     return await createChat(
-      session?.user?.email!,
+      session?.user?.email ?? "",
       messages[0].content,
       messages
     );
