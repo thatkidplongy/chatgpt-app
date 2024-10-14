@@ -12,13 +12,16 @@ export default async function PreviousChats() {
   const chats = await getChatsWithMessages(session?.user?.email ?? "");
 
   return (
-    <div>
+    <div className="">
       {chats.length > 0 && (
         <>
           <div className="text-2xl font-bold">Previous Chat Sessions</div>
           <div className="grid grid-cols-1 md:grid-cols-2">
             {chats.map((chat) => (
-              <div key={chat.id} className="m-1 border-2 rounded-xl">
+              <div
+                key={chat.id}
+                className="m-1 border-2 rounded-xl transition ease-in-out duration-300 transform hover:scale-105"
+              >
                 <Link
                   href={`/chats/${chat.id}`}
                   className="text-lg line-clamp-1 px-5 py-2 text-white bg-blue-900 rounded-t-lg"

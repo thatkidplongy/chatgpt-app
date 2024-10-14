@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
-import Link from "next/link";
 
-import { auth, signIn, signOut } from "@/auth";
+import { auth } from "@/auth";
 
-import UserButton from "./components/UserButton";
-
+import Header from "./components/Header";
+import ProgressBarProvider from "./components/ProgressBarProvider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -39,31 +38,14 @@ export default async function RootLayout({
   return (
     <SessionProvider basePath="/api/auth" session={session}>
       <html lang="en">
-        <body className={`${inter.className} px-2 md:px-5`}>
-          <header className="text-white font-bold bg-green-900 text-2xl p-2 mb-3 rounded-b-lg shadow-gray-700 shadow-lg flex">
-            <div className="flex flex-grow">
-              <Link href="/">GPT Chat</Link>
-              <Link href="/about" className="ml-5 font-light">
-                About
-              </Link>
+        <body className={`${inter.className} p-2 md:p-5`}>
+          <ProgressBarProvider>
+            <Header />
+            <div className="flex flex-col md:flex-row">
+              {chats}
+              <div className="flex-grow">{children}</div>
             </div>
-            <div>
-              <UserButton
-                onSignIn={async () => {
-                  "use server";
-                  await signIn();
-                }}
-                onSignOut={async () => {
-                  "use server";
-                  await signOut();
-                }}
-              />
-            </div>
-          </header>
-          <div className="flex flex-col md:flex-row">
-            {chats}
-            <div className="flex-grow">{children}</div>
-          </div>
+          </ProgressBarProvider>
         </body>
       </html>
     </SessionProvider>

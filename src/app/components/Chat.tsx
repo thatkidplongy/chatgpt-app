@@ -57,7 +57,7 @@ export default function Chat({
           onChange={handleInputChange}
           autoFocus
         />
-        <Button type="submit" className="ml-3 text-xl">
+        <Button type="submit" className="ml-3 text-xl border-2 border-white">
           Send
         </Button>
       </form>
