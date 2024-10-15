@@ -1,4 +1,5 @@
 import { signIn, signOut } from "@/auth";
+import { revalidatePath } from "next/cache";
 import NavigationLinks from "./NavigationLinks";
 import UserButton from "./UserButton";
 
@@ -15,6 +16,7 @@ function Header() {
           onSignOut={async () => {
             "use server";
             await signOut();
+            revalidatePath("/");
           }}
         />
       </div>

@@ -8,12 +8,6 @@ const authOptions: NextAuthConfig = {
       clientSecret: process.env.GITHUB_SECRET ?? "",
     }),
   ],
-  callbacks: {
-    async signIn({ profile }) {
-      // Change this to your username
-      return profile?.login === "thatkidplongy";
-    },
-  },
   basePath: "/api/auth",
   secret: process.env.NEXTAUTH_SECRET,
 };
