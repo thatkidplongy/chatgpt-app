@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+It's a generative artificial intelligence chatbot, modeled after ChatGPT.
+
+I used Next.js in both front-end and back-end.
+I used vercel for database and deployment.
+I used NextAuth v5 for authentication.
+
 ## Getting Started
 
 First, run the development server:
